@@ -13,8 +13,11 @@ for now and extend it to other bases once we have method to check if number is o
 """
 
 
+
 # Import modules
 from time import perf_counter
+
+
 
 # Helper Functions
 # ------------------------------------------------------------------------------------------------ #
@@ -40,10 +43,25 @@ def find_digits_and_convert_to_list(n):
 
 
 def is_palindrome(number):
+    '''Checks if a number is a palindrome or not.'''
     if type(number)!=int:
         raise ValueError("You can't give any other argument other than integers(not even strings/arrays).")
     
     return str(number) == str(number)[::-1]
+
+
+def remove_trailing_zeros(n):
+    '''Removes the unnecessary zeros from the number list before displaying it as output.'''
+    done = False
+    while not done:
+        try:
+            if n[-1] == 0:
+                n.pop()
+            else:
+                break
+        except IndexError:
+            break
+    return n
 
 # ------------------------------------------------------------------------------------------------ #
 
@@ -170,7 +188,201 @@ def sum_four_digits(d, p1, p2, p3, g=10):
 
 
 
+# ALGORITHMS TO FIND PALINDROME OF GENERAL NUMBERS (LARGER THAN 6 DIGITS)
 
+# ------------------------------------------------------------------------------------------------ #
+# Decide the type of number and initialize values
+def decide_type(d, p1, p2, p3, g=10):
+    '''Returns the category of number and initializes p1, p2, p3(last and first digits) based on that.'''
+    l = len(d)
+    n_type = None
+    
+    if d[l-2] not in [0, 1, 2] and (z1 := D(d[0]-d[l-1]-d[l-2]+1, g))!=0:
+        n_type = 'A1'
+        p1[l-1] = p1[0] = d[l-1]
+        p2[l-2] = p2[0] = d[l-2] - 1
+        p3[l-3] = p3[0] = z1
+    
+    elif d[l-2] not in [0, 1, 2] and D(d[0]-d[l-1]-d[l-2]+1, g) == 0:
+        n_type = 'A2'
+        p1[l-1] = p1[0] = d[l-1]
+        p2[l-2] = p2[0] = d[l-2] - 2
+        p3[l-3] = p3[0] = 1
+        
+    elif d[l-2] in [0, 1, 2] and (d[l-1] != 1) and (z1 := D(d[0]-d[l-1]+2, g))!=0:
+        n_type = 'A3'
+        p1[l-1] = p1[0] = d[l-1]-1
+        p2[l-2] = p2[0] = g-1
+        p3[l-3] = p3[0] = z1
+    
+    elif d[l-2] in [0, 1, 2] and (d[l-1] != 1) and D(d[0]-d[l-1]+2, g)==0:
+        n_type = 'A4'
+        p1[l-1] = p1[0] = d[l-1]-1
+        p2[l-2] = p2[0] = g-2
+        p3[l-3] = p3[0] = 1
+    
+    elif d[l-1]==1 and d[l-2]==0 and d[l-3]<=3 and (z1:= D(d[0]-d[l-3], g))!=0:
+        n_type = 'A5'
+        p1[l-2] = p1[0] = g-1
+        p2[l-3] = p2[0] = d[l-3] + 1
+        p3[l-4] = p3[0] = z1
+
+    elif d[l-1]==1 and d[l-2]==0 and d[l-3]<=2 and D(d[0]-d[l-3], g)==0:
+        n_type = 'A6'
+        p1[l-2] = p1[0] = g-1
+        p2[l-3] = p2[0] = d[l-3] + 2
+        p3[l-4] = p3[0] = g-1
+    
+    
+    elif d[l-1] == 1 and d[l-2]<=2 and d[l-3]>=4 and (z1:= D(d[0]-d[l-3], g)!=0):
+        n_type = 'B1'
+        p1[l-1] = p1[0] = 1
+        p1[l-2] = p1[1] = d[l-2]
+        p2[l-3] = p2[0] = d[l-3]-1
+        p3[l-4] = p3[0] = z1
+    
+    elif d[l-1] == 1 and d[l-2]<=2 and d[l-3]>=3 and D(d[0]-d[l-3], g)==0:
+        n_type = 'B2'
+        p1[l-1] = p1[0] = 1
+        p1[l-2] = p1[1] = d[l-2]
+        p2[l-3] = p2[0] = d[l-3]-2
+        p3[l-4] = p3[0] = 1
+    
+    elif d[l-1] == 1 and  d[l-2] in [1, 2] and d[l-3] in [0, 1] and d[0] == 0:
+        n_type = 'B3'
+        p1[l-1] = p1[0] = 1
+        p1[l-2] = p1[1] = d[l-2] - 1
+        p2[l-3] = p2[0] = g - 2
+        p3[l-4] = p3[0] = 1
+    
+    elif d[l-1] == 1 and  d[l-2] in [1, 2] and d[l-3] in [2, 3] and d[0] == 0:
+        n_type = 'B4'
+        p1[l-1] = p1[0] = 1
+        p1[l-2] = p1[1] = d[l-2]
+        p2[l-3] = p2[0] = 1
+        p3[l-4] = p3[0] = g - 2  
+    
+    elif d[l-1] == 1 and  d[l-2] in [1, 2] and d[l-3] in [0, 1, 2] and (z1 := d[0]) != 0:
+        n_type = 'B5'
+        p1[l-1] = p1[0] = 1
+        p1[l-2] = p1[1] = d[l-2] - 1
+        p2[l-3] = p2[0] = g - 1
+        p3[l-4] = p3[0] = z1  
+    
+    elif d[l-1] == 1 and  d[l-2] in [1, 2] and d[l-3]==3 and (z1 := D(d[0]-3, g)) != 0:
+        n_type = 'B6'
+        p1[l-1] = p1[0] = 1
+        p1[l-2] = p1[1] = d[l-2]
+        p2[l-3] = p2[0] = 2
+        p3[l-4] = p3[0] = z1  
+    
+    elif d[l-1] == 1 and  d[l-2] in [1, 2] and d[l-3]==3 and d[0]==3:
+        n_type = 'B7'
+        p1[l-1] = p1[0] = 1
+        p1[l-2] = p1[1] = d[l-2]
+        p2[l-3] = p2[0] = 1
+        p3[l-4] = p3[0] = 1  
+    
+    
+    if n_type == None:
+        raise ValueError("Something unexpected happened. We might need to rectify code.")
+    else:
+        return (n_type, p1, p2, p3)
+
+# ------------------------------------------------------------------------------------------------ #
+
+
+# ------------------------------------------------------------------------------------------------ #
+# Algorithm-1
+def algorithm_1(d, p1, p2, p3, m, l, g=10):
+    return (p1, p2, p3)
+# ------------------------------------------------------------------------------------------------ #
+
+
+# ------------------------------------------------------------------------------------------------ #
+# Algorithm-2
+def algorithm_2(d, p1, p2, p3, m, l, g=10):
+    return (p1, p2, p3)
+# ------------------------------------------------------------------------------------------------ #
+
+
+# ------------------------------------------------------------------------------------------------ #
+# Algorithm-3
+def algorithm_3(d, p1, p2, p3, m, l, g=10):
+    return (p1, p2, p3)
+# ------------------------------------------------------------------------------------------------ #
+
+
+# ------------------------------------------------------------------------------------------------ #
+# Algorithm-4
+def algorithm_4(d, p1, p2, p3, m, l, g=10):
+    return (p1, p2, p3)
+# ------------------------------------------------------------------------------------------------ #
+
+
+# ------------------------------------------------------------------------------------------------ #
+# Algorithm-5
+def algorithm_5(d, p1, p2, p3, m, l, g=10):
+    return (p1, p2, p3)
+# ------------------------------------------------------------------------------------------------ #
+
+
+
+# ------------------------------------------------------------------------------------------------ #
+# main algorithm to break number into subcases and call Algorithm 1-5 accordingly
+def main_algorithm(d, p1, p2, p3, g=10):
+    n_type, p1, p2, p3 = decide_type(d, p1, p2, p3, g)
+    
+    l = len(d)
+    odd = (l%2==1)
+    m = l >> 1
+    special = ((d[m]==0 or d[m-1]==0) and (l == 2*m))
+
+    # Determining the Algorithm to use according to n_type, odd and special properties
+    if n_type in ['A1', 'A2', 'A3', 'A4']:
+        if odd:
+            p1, p2, p3 = algorithm_1(d, p1, p2, p3, m, l, g)
+            
+        elif not special:
+            p1, p2, p3 = algorithm_2(d, p1, p2, p3, m, l, g)
+            
+        else:
+            p1, p2, p3 = algorithm_5(d, p1, p2, p3, m, l, g)
+      
+            
+    elif n_type in ['A5', 'A6']:
+        if not odd:
+            p1, p2, p3 = algorithm_1(d, p1, p2, p3, m-1, l, g)
+            
+        elif not special:
+            p1, p2, p3 = algorithm_2(d, p1, p2, p3, m, l, g)
+            
+        else:
+            p1, p2, p3 = algorithm_5(d, p1, p2, p3, m, l, g)
+            
+            
+    elif n_type in ['B1', 'B2', 'B3', 'B4', 'B5', 'B6', 'B7']:
+        if odd:
+            p1, p2, p3 = algorithm_3(d, p1, p2, p3, m, l, g)
+            
+        elif not special:
+            p1, p2, p3 = algorithm_4(d, p1, p2, p3, m, l, g)
+            
+        else:
+            p1, p2, p3 = algorithm_5(d, p1, p2, p3, m, l, g)
+    
+    
+    else:
+        # Number is not of any type which is solvable
+        raise ValueError("The number was not categorized in any of the present distributions which could be broken to find a solution. We might need to yet consider some extreme cases.")
+    
+    return (p1, p2, p3)
+
+# ------------------------------------------------------------------------------------------------ #
+
+
+
+# MAIN FUNCTION API TO CALCULATE PALINDROMES, ESTIMATING THE RUNTIME AND PRINT THEM IN FORMATTED WAY USING ABOVE ALGORITHMS
 def find_palindromes(n, g=10, print_pal=True):
     num_digits, d = find_digits_and_convert_to_list(n)
 
@@ -211,8 +423,8 @@ def find_palindromes(n, g=10, print_pal=True):
 
     else:
         # Number of digits are greater than 7. So, we use general algorithm.
-        pass
-
+        p1, p2, p3 = main_algorithm(d, p1, p2, p3, g)
+        
 
     # end the timer
     end_time = perf_counter()
@@ -220,10 +432,16 @@ def find_palindromes(n, g=10, print_pal=True):
     
     # We print the numbers in appropriate format. e.g. [1, 4, 5] will represent number 541 and not 145.
     def print_palindromes():
+        
+        # Remove the zeroes that are not of any value
+        p1_c = remove_trailing_zeros(p1)
+        p2_c = remove_trailing_zeros(p2)
+        p3_c = remove_trailing_zeros(p3)
+        
         print("-------------------------------------------")
-        print("First Palindrome: \t" ,   *p1[::-1],  sep='')
-        print("Second Palindrome:\t" ,   *p2[::-1],  sep='')
-        print("Third Palindrome: \t" ,   *p3[::-1],  sep='')
+        print("First Palindrome: \t" ,   *p1_c[::-1] if len(p1_c) > 0 else [0],  sep='')
+        print("Second Palindrome:\t" ,   *p2_c[::-1] if len(p2_c) > 0 else [0],  sep='')
+        print("Third Palindrome: \t" ,   *p3_c[::-1] if len(p3_c) > 0 else [0],  sep='')
         print("-------------------------------------------")
         print(f"Total Time Elapsed:  {time_elapsed*1000:.5f} ms")
 
@@ -231,13 +449,28 @@ def find_palindromes(n, g=10, print_pal=True):
         print_palindromes()
     
     # Convert palindrome list to integers and return the time elapsed and palindromes.
-    pal1 = int( ''.join( list( map( str, p1[::-1] ) ) ) )
-    pal2 = int( ''.join( list( map( str, p2[::-1] ) ) ) )
-    pal3 = int( ''.join( list( map( str, p3[::-1] ) ) ) )
+    try:
+        pal1 = int( ''.join( list( map( str, p1[::-1] ) ) ) )
+    except Exception:
+        pal1 = 0
     
-    return (pal1, pal2, pal3, time_elapsed)
+    try:
+        pal2 = int( ''.join( list( map( str, p2[::-1] ) ) ) )
+    except Exception:
+        pal2 = 0
+        
+    try:
+        pal3 = int( ''.join( list( map( str, p3[::-1] ) ) ) )
+    except Exception:
+        pal3 = 0
+        
+        
+    return (pal1, pal2, pal3, time_elapsed*1000)
 
 
+
+
+# DRIVER FUNCTION
 def main():
     # Set the base.
     g = 10
@@ -263,9 +496,14 @@ def main():
 
     print(f"\nYou entered: {n}")
 
-    find_palindromes(n, g)
+    # This will return a tuple of (pal1, pal2, pal3, time). 
+    # We can store and perform calculations on it if we don't
+    # want to print it in standard inbuilt way.
+    find_palindromes(n, g, print_pal=True)
+    
     
 
 
+# CALL DRIVER ONLY IF THIS FILE IS RAN OTHERWISE WE PERFORM AUTOMATED TESTING BY CALLING find_palindromes directly.
 if __name__ == "__main__":
     main()

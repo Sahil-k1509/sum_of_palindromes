@@ -40,7 +40,7 @@ def naive_palindromes(n, print_pal=True):
                     if print_pal:
                         print_palindromes(pal1, pal2, pal3, time_elapsed)
                     
-                    return (pal1, pal2, pal3, time_elapsed)
+                    return (pal1, pal2, pal3, time_elapsed*1000)
                 
 
 def main():
@@ -48,7 +48,7 @@ def main():
     print("Enter the number you would like to break: ", end='')
     n = int(input())
     
-    naive_palindromes(n)
+    naive_palindromes(n, print_pal=True)
     
     
 if __name__ == "__main__":
