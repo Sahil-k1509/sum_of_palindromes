@@ -16,6 +16,7 @@ from time import perf_counter
 def is_palindrome(number):
     return str(number) == str(number)[::-1]
 
+
 # We define function only for base 10
 def naive_palindromes(n, print_pal=True):
     
