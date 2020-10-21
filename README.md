@@ -6,7 +6,7 @@
                   Program uses 3 nested loops to iterate over all triplets of numbers from (0,0,0) to (n,n,n) and stop when it finds the triplet such that all numbers are     
                   palindromes and sum is n. The time complexity is O(n^3) which is not very efficient. You can see the time taken by program to find triplets in comparision.png.
                   Orange line represents the time taken to find triplet for given n. It increases to great extend after n=1000.
-                  We Can increase the efficiency by exploiting the fact that sum is constant by following code.
+                  We Can increase the efficiency by exploiting the fact that sum is constant by following code.        
                   ```
                   for num1 in range(n):     
                       for num2 in range(n):       
