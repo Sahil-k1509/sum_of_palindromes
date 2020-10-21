@@ -8,10 +8,10 @@
                   Orange line represents the time taken to find triplet for given n. It increases to great extend after n=1000.
                   We Can increase the efficiency by exploiting the fact that sum is constant by following code.
                   ```
-                  for num1 in range(n):
-                      for num2 in range(n):
-                          num3 = n - (num1 + num2)
-                          if ispalindrome(num1) and ispalindrome(num2) and ispalindromenum3):
+                  for num1 in range(n):     
+                      for num2 in range(n):       
+                          num3 = n - (num1 + num2)        
+                          if ispalindrome(num1) and ispalindrome(num2) and ispalindromenum3):       
                               return (num1, num2, num3)
                   ```
                   
