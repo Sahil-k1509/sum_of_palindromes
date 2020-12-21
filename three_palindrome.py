@@ -475,8 +475,8 @@ def sum_six_digits(d, p1, p2, p3, g=10):
             y[3] = g + d[2] - c[2] - z[1] - x[3]
             
             p1 = [0, x[1], x[2], x[3], x[2], x[1]][::-1]
-            p1 = [0, y[1], y[2], y[3], y[2], y[1]][::-1]
-            p1 = [0, 0, 0, z[1], z[2], z[1]][::-1]
+            p2 = [0, y[1], y[2], y[3], y[2], y[1]][::-1]
+            p3 = [0, 0, 0, z[1], z[2], z[1]][::-1]
             
             return (p1, p2, p3)
         
@@ -498,8 +498,8 @@ def sum_six_digits(d, p1, p2, p3, g=10):
             y[3] = 1 + d[2] - c[2] - x[3] 
             
             p1 = [0, x[1], x[2], x[3], x[2], x[1]][::-1]
-            p1 = [0, y[1], y[2], y[3], y[2], y[1]][::-1]
-            p1 = [0, 0, 0, z[1], z[2], z[1]][::-1]
+            p2 = [0, y[1], y[2], y[3], y[2], y[1]][::-1]
+            p3 = [0, 0, 0, z[1], z[2], z[1]][::-1]
             
             return (p1, p2, p3)
         
@@ -590,8 +590,8 @@ def sum_six_digits(d, p1, p2, p3, g=10):
                 y[3] = 1 + d[2] - c[2] - x[3]
         
                 p1 = [0, x[1], x[2], x[3], x[2], x[1]][::-1]
-                p1 = [0, y[1], y[2], y[3], y[2], y[1]][::-1]
-                p1 = [0, 0, 0, z[1], z[2], z[1]][::-1]
+                p2 = [0, y[1], y[2], y[3], y[2], y[1]][::-1]
+                p3 = [0, 0, 0, z[1], z[2], z[1]][::-1]
                 
                 return (p1, p2, p3)
             
@@ -792,7 +792,7 @@ def decide_type(d, p1, p2, p3, g=10):
         p3[l-4] = p3[0] = g - 1
     
     
-    elif d[l-1] == 1 and d[l-2] <= 2 and d[l-3] >= 4 and (z1:= D(d[0] - d[l-3], g) != 0):
+    elif d[l-1] == 1 and d[l-2] <= 2 and d[l-3] >= 4 and (z1:= D(d[0] - d[l-3], g)) != 0:
         n_type  = 'B1'
         p1[l-1] = p1[0] = 1
         p1[l-2] = p1[1] = d[l-2]
@@ -918,7 +918,7 @@ def algorithm_1(d, p1, p2, p3, m, l, g=10):
     
     
     # Writing Results in File for analysis
-    with open('results.txt', 'a') as file:
+    with open('./additionals/results.txt', 'a') as file:
         try:
             separator = '\n---------------------------\n'
             string = f'Algorithm: 1\nNumber array reversed: {d}\nActual Number: {d[::-1]}\nx: {x}\nP1: {p1}\ny: {y}\nP2: {p2}\nz: {z}\nP3: {p3}\nm(length of subarray x,y,z): {m}\t\tl(length of number): {l}\t\tbase: {g}'
@@ -1022,7 +1022,7 @@ def algorithm_2(d, p1, p2, p3, m, l, g=10):
     
     
     # Writing Results in File for analysis
-    with open('results.txt', 'a') as file:
+    with open('./additionals/results.txt', 'a') as file:
         try:
             separator = '\n---------------------------\n'
             string = f'Algorithm: 2\nNumber array reversed: {d}\nActual Number: {d[::-1]}\nx: {x}\nP1: {p1}\ny: {y}\nP2: {p2}\nz: {z}\nP3: {p3}\nm(length of subarray x,y,z): {m}\t\tl(length of number): {l}\t\tbase: {g}'
@@ -1050,13 +1050,12 @@ def algorithm_3(d, p1, p2, p3, m, l, g=10):
     
     
     # Initialize the x, y, z arrays and carry over arrays.
-    x, y, z = [None, p1[0]], [None, p2[0]], [None, p3[0]]
-    c = [None, (x[1] + y[1] + z[1])//g]
-    
+    x, y, z = [None, p1[1]], [None, p2[0]], [None, p3[0]]
+    c = [None, (1 + y[1] + z[1])//g]
     
     # Add the next value of x, y, z and carry
     if z[1] <= d[2*m - 3] - 1:  x.append(D(d[2*m - 2] - y[1], g))
-    elif z[1] >= d[2*m - 3]:    x.append(D(d[2*m - 2] - y[1] - 1, g))
+    else:    x.append(D(d[2*m - 2] - y[1] - 1, g))
         
     y.append(D(d[2*m - 3] - z[1] - 1, g))
     z.append(D(d[1] - x[1] - y[2] - c[1], g))
@@ -1076,7 +1075,6 @@ def algorithm_3(d, p1, p2, p3, m, l, g=10):
     
     c.append((x[m - 1] + y[m] + z[m - 1] + c[m - 1] - d[m - 1])//g)
     
-    
     # Adjustment Step
     if c[m] == 1: 
         # No adjustment is needed
@@ -1088,7 +1086,6 @@ def algorithm_3(d, p1, p2, p3, m, l, g=10):
       
         
     elif c[m] == 2:
-        
         if y[m - 1] != 0 and z[m - 1] != g - 1:
             y[m - 1] -= 1
             y[m] -= 1
@@ -1110,11 +1107,10 @@ def algorithm_3(d, p1, p2, p3, m, l, g=10):
             x[m] = 1
             y[m - 1] = g - 1
             z[m - 1] = 0
-        
-            
+             
     # Put the values of x,y,z in p1, p2, p3 repectively
     for i in range(1, m):
-        p1[i - 1] = p1[2*m - i] = x[i]
+        p1[i] = p1[2*m - i] = x[i]
         p2[i - 1] = p2[2*m - i - 1] = y[i]
         p3[i - 1] = p3[2*m - i - 2] = z[i]
         
@@ -1123,7 +1119,7 @@ def algorithm_3(d, p1, p2, p3, m, l, g=10):
     
     
     # Writing Results in File for analysis
-    with open('results.txt', 'a') as file:
+    with open('./additionals/results.txt', 'a') as file:
         try:
             separator = '\n---------------------------\n'
             string = f'Algorithm: 3\nNumber array reversed: {d}\nActual Number: {d[::-1]}\nx: {x}\nP1: {p1}\ny: {y}\nP2: {p2}\nz: {z}\nP3: {p3}\nm(length of subarray x,y,z): {m}\t\tl(length of number): {l}\t\tbase: {g}'
@@ -1149,11 +1145,9 @@ def algorithm_4(d, p1, p2, p3, m, l, g=10):
     # Optional Prompt for algo stage.
     print("You are currently being processed through Algorithm 4")
     
-    
     # Initialize the x, y, z arrays and carry over arrays.
-    x, y, z = [None, p1[0]], [None, p2[0]], [None, p3[0]]
-    c = [None, (x[1] + y[1] + z[1])//g]
-    
+    x, y, z = [None, p1[1]], [None, p2[0]], [None, p3[0]]
+    c = [None, (1 + y[1] + z[1])//g]
     
     # Add the next value of x, y, z and carry
     if z[1] <= d[2*m - 4] - 1:  x.append(D(d[2*m - 3] - y[1], g))
@@ -1413,7 +1407,7 @@ def algorithm_4(d, p1, p2, p3, m, l, g=10):
     
     
     # Writing Results in File for analysis
-    with open('results.txt', 'a') as file:
+    with open('./additionals/results.txt', 'a') as file:
         try:
             separator = '\n---------------------------\n'
             string = f'Algorithm: 4\nNumber array reversed: {d}\nActual Number: {d[::-1]}\nx: {x}\nP1: {p1}\ny: {y}\nP2: {p2}\nz: {z}\nP3: {p3}\nm(length of subarray x,y,z): {m}\t\tl(length of number): {l}\t\tbase: {g}'
@@ -1428,7 +1422,6 @@ def algorithm_4(d, p1, p2, p3, m, l, g=10):
         finally:
             file.close()    
     
-        
     return (p1, p2, p3)
 # ------------------------------------------------------------------------------------------------ #
 
@@ -1450,7 +1443,7 @@ def algorithm_5(d, p1, p2, p3, m, l, g=10):
     centre_zero = (d_prime[m]==0 or d_prime[m-1]==0)
     
     if centre_zero:
-        n_prime = n - 2*s
+        n_prime = n - s
         sm = sm_1 = 2
         _, d_prime = find_digits_and_convert_to_list(n_prime)
     
@@ -1479,7 +1472,7 @@ def algorithm_5(d, p1, p2, p3, m, l, g=10):
 
     
     # Writing Results in File for analysis
-    with open('results.txt', 'a') as file:
+    with open('./additionals/results.txt', 'a') as file:
         try:
             separator = '\n---------------------------\n'
             string = f'Algorithm: 5\nNumber array reversed: {d}\nActual Number: {d[::-1]}\nP1: {p1}\nP2: {p2}\nP3: {p3}\nm(length of subarray x,y,z): {m}\t\tl(length of number): {l}\t\tbase: {g}'
