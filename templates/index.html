@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{{ url_for('static', filename='styles/index.css') }}">
+
+    <script src="{{ url_for('static', filename='js/jquery-3.5.1.min.js') }}"></script>
+</head>
+<body>
+
+    <div class="container">
+        <div class="intro section">
+            <div class='w'>Hey There</div>
+            <div class='x'>Ever heard of 3 palindrome theorem.</div>
+            <div class='y'>NO ??!</div>
+            <div class='z'>Worry not, I got you.</div>
+        </div>
+
+        <div class='theorem section'>
+            <div>
+                Any positive Integer can be written as a sum of atmost <br><strong>3 palindromic numbers</strong>
+            </div><br><br>
+            <div>A palindrome is something which is same</div><br><br>
+            <div class='emph a'>Backwards</div>
+            <div>as well as</div>
+            <div class='emph b'>Forwards</div>
+            <br><br>
+            <div>GIVE ME A NUMBER AND I WILL BREAK IT INTO THREE PALINDROMES</div>
+        </div>
+
+
+        <div class="number-form section">
+            <form action="/" method="POST">
+                <label for="number">Enter Number Here</label><br>
+                <input type="text" name='number' id='numberField' />
+                <div id='error-display' class='error'></div>
+
+                <button type='submit' id='number-sub'>¡Demuestra magia!</button>
+            </form>
+        </div>
+
+        <div class="output-bar section">
+            <div class='outcov'><div class="symbols"></div><div id="pal1" class='nums'></div></div>
+            <div class='outcov'><div class='symbols'> + </div><div id="pal2" class='nums'></div></div>
+            <div class='outcov'><div class='symbols'> + </div><div id="pal3" class='nums'></div></div>
+            <div class='outcov'><div class='symbols'> = </div><div id="result" class='res nums'></div></div>
+        </div>
+
+        <footer>
+            <div>The research paper for this amazing program is located on:</div>
+            <a href="https://arxiv.org/abs/1602.06208v2">Every positive integer is sum of three palindromes</a>
+            <div>by Javier Cilleruelo, Florian Luca and Lewis Baxter</div>
+            <div>The source code for the program is available at: </div>
+            <a href="https://github.com/Sahil-k1509/sum_of_palindromes">Python Source Code</a>
+            <br>
+            <div>It was programmed by : <a href="https://Sahil-k1509.github.io">Sahil Bairagi</a></div>
+        </footer>
+    </div>
+
+    <script src="{{ url_for('static', filename='js/app.js') }}"></script>
+</body>
+</html>
