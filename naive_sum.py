@@ -31,17 +31,16 @@ def naive_palindromes(n, print_pal=True):
     start_time = perf_counter()
     for i in range(n+1):
         for j in range(n+1):
-            for k in range(n+1):
+            k = n - (i+j)
+            if is_palindrome(i) and is_palindrome(j) and is_palindrome(k):
+                end_time = perf_counter()
+                time_elapsed =  end_time - start_time
+                pal1, pal2, pal3 = i, j, k
                 
-                if is_palindrome(i) and is_palindrome(j) and is_palindrome(k) and (i+j+k == n):
-                    end_time = perf_counter()
-                    time_elapsed =  end_time - start_time
-                    pal1, pal2, pal3 = i, j, k
-                    
-                    if print_pal:
-                        print_palindromes(pal1, pal2, pal3, time_elapsed)
-                    
-                    return (pal1, pal2, pal3, time_elapsed*1000)
+                if print_pal:
+                    print_palindromes(pal1, pal2, pal3, time_elapsed)
+                
+                return (pal1, pal2, pal3, time_elapsed*1000)
                 
 
 def main():
