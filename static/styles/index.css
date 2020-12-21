@@ -1,0 +1,314 @@
+*, *::before, *::after {
+  margin: 0;
+  padding: 0;
+  outline: none;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+body {
+  background-color: #202020;
+  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
+}
+
+.container .section {
+  width: 80%;
+  height: 100vh;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+  -webkit-box-orient: vertical;
+  -webkit-box-direction: normal;
+      -ms-flex-direction: column;
+          flex-direction: column;
+  -webkit-box-align: center;
+      -ms-flex-align: center;
+          align-items: center;
+  -webkit-box-pack: center;
+      -ms-flex-pack: center;
+          justify-content: center;
+  font-size: 1.5rem;
+  color: white;
+}
+
+.container .section .emph {
+  font-weight: 800;
+  margin: 1rem;
+  font-size: 2.4rem;
+}
+
+.container .section .emph.a {
+  -webkit-animation: revolve ease 3s infinite;
+          animation: revolve ease 3s infinite;
+}
+
+.container .section .emph.b {
+  -webkit-animation: revolve ease 3s infinite 1.5s;
+          animation: revolve ease 3s infinite 1.5s;
+}
+
+@-webkit-keyframes revolve {
+  0% {
+    -webkit-transform: rotateY(0) scale(1);
+            transform: rotateY(0) scale(1);
+  }
+  50% {
+    -webkit-transform: rotateY(180deg) scale(1.5);
+            transform: rotateY(180deg) scale(1.5);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg) scale(1);
+            transform: rotateY(360deg) scale(1);
+  }
+}
+
+@keyframes revolve {
+  0% {
+    -webkit-transform: rotateY(0) scale(1);
+            transform: rotateY(0) scale(1);
+  }
+  50% {
+    -webkit-transform: rotateY(180deg) scale(1.5);
+            transform: rotateY(180deg) scale(1.5);
+  }
+  100% {
+    -webkit-transform: rotateY(360deg) scale(1);
+            transform: rotateY(360deg) scale(1);
+  }
+}
+
+.container .intro {
+  border-bottom: 0.1rem solid rgba(243, 243, 243, 0.342);
+}
+
+.container .intro .w {
+  -webkit-animation: flicker ease 2s infinite 0s;
+          animation: flicker ease 2s infinite 0s;
+}
+
+.container .intro .x {
+  -webkit-animation: flicker ease 2s infinite 0.3s;
+          animation: flicker ease 2s infinite 0.3s;
+}
+
+.container .intro .y {
+  -webkit-animation: flicker ease 2s infinite 0.5s;
+          animation: flicker ease 2s infinite 0.5s;
+}
+
+.container .intro .z {
+  -webkit-animation: flicker ease 2s infinite 0.7s;
+          animation: flicker ease 2s infinite 0.7s;
+}
+
+@-webkit-keyframes flicker {
+  0% {
+    opacity: 0.4;
+  }
+  25% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1.0;
+  }
+  60% {
+    opacity: 0.3;
+  }
+  70% {
+    opacity: 1.0;
+  }
+  75% {
+    opacity: 0.2;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+@keyframes flicker {
+  0% {
+    opacity: 0.4;
+  }
+  25% {
+    opacity: 0.7;
+  }
+  50% {
+    opacity: 1.0;
+  }
+  60% {
+    opacity: 0.3;
+  }
+  70% {
+    opacity: 1.0;
+  }
+  75% {
+    opacity: 0.2;
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    opacity: 0.4;
+  }
+}
+
+.container .intro div {
+  font-size: 2.5rem;
+  color: #0069a7;
+  text-align: center;
+  font-weight: 800;
+  margin: 1rem;
+  text-shadow: 0 0 2rem rgba(0, 106, 167, 0.808);
+  padding: 0.5rem;
+}
+
+.container .number-form {
+  height: 50vh;
+  border-top: 0.1rem solid rgba(243, 243, 243, 0.342);
+}
+
+.container .number-form form label {
+  font-size: 2rem;
+  font-weight: 900;
+  color: white;
+  margin: 0.5rem;
+}
+
+.container .number-form form input {
+  background-color: #d4d4d4;
+  color: black;
+  font-size: 1rem;
+  border: none;
+  width: 20rem;
+  border-radius: 0.5rem;
+  padding: 0.9rem;
+  margin: 1rem;
+}
+
+.container .number-form form .error {
+  color: rgba(177, 0, 0, 0.918);
+  font-size: 1rem;
+  margin: 1rem;
+}
+
+.container .number-form form #number-sub {
+  border: 0.1rem solid black;
+  background-color: #0069a7;
+  color: white;
+  font-size: 2rem;
+  border-radius: 0.5rem;
+  padding: 0.8rem;
+  margin: 0.5rem;
+  cursor: pointer;
+}
+
+.container .output-bar {
+  height: 50vh;
+  text-align: center;
+}
+
+.container .output-bar .outcov {
+  width: 20rem;
+  display: -webkit-box;
+  display: -ms-flexbox;
+  display: flex;
+  margin: 0.4rem;
+}
+
+.container .output-bar .outcov .nums {
+  visibility: hidden;
+  opacity: 0;
+  -webkit-transition: all ease 0.5s;
+  transition: all ease 0.5s;
+  font-size: 2rem;
+  color: white;
+  width: 70%;
+}
+
+.container .output-bar .outcov .symbols {
+  color: white;
+  font-size: 2rem;
+  font-weight: 700;
+  width: 30%;
+}
+
+.container .output-bar .outcov .res {
+  border-top: 0.1rem solid white;
+  font-weight: 800;
+  -webkit-animation: blinkc ease 1s infinite 1s;
+          animation: blinkc ease 1s infinite 1s;
+}
+
+@-webkit-keyframes blinkc {
+  0% {
+    color: white;
+  }
+  50% {
+    color: white;
+  }
+  55% {
+    color: #0084ff;
+  }
+  70% {
+    color: #ff2f2f;
+  }
+  85% {
+    color: #6dfc6d;
+  }
+  100% {
+    color: white;
+  }
+}
+
+@keyframes blinkc {
+  0% {
+    color: white;
+  }
+  50% {
+    color: white;
+  }
+  55% {
+    color: #0084ff;
+  }
+  70% {
+    color: #ff2f2f;
+  }
+  85% {
+    color: #6dfc6d;
+  }
+  100% {
+    color: white;
+  }
+}
+
+.container .output-bar .outcov .nums.appearing {
+  visibility: visible;
+  opacity: 1;
+}
+
+.container footer {
+  padding-bottom: 5rem;
+  padding-top: 0.5rem;
+  text-align: center;
+  color: #c2c2c2;
+  font-size: 1rem;
+  border-top: 0.1rem solid rgba(243, 243, 243, 0.342);
+}
+
+.container footer div {
+  margin: 0.5rem;
+  padding: 0.5rem;
+}
+
+.container footer a {
+  text-decoration: none;
+  color: white;
+  font-weight: 800;
+}
+/*# sourceMappingURL=index.css.map */
