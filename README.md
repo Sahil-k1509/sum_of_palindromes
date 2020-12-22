@@ -5,10 +5,14 @@
 > Clone the repository or download zip.    
 > Run the three_palindrome.py file using `python three_palindrome.py` command. Make sure you have python installed.    
 > If you want to see the comparision. Head towards **additionals** folder and open images...    
+
 **For running the test.py**    
+
 > Install matplotlib module using `pip install matplotlib`    
 > Run test.py using `python test.py`     
+
 **For web version**    
+
 > Install the required modules with `pip install -r requirements.txt`    
 > Run the app.py file using `python app.py`     
 > Go to browser and search `localhost:5000` or `127.0.0.1:5000`    
