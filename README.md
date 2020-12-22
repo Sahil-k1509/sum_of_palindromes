@@ -29,13 +29,13 @@ In the web version, You have to fill the input box and submit. The program will 
                   palindromes and sum is n. The time complexity is O(n^3) which is not very efficient. You can see the time taken by program to find triplets in comparision.png.
                   Orange line represents the time taken to find triplet for given n. It increases to great extend after n=1000.
                   We Can increase the efficiency by exploiting the fact that sum is constant by following code.        
-                  ```
-                  for num1 in range(n):         
-                      for num2 in range(n):            
-                          num3 = n - (num1 + num2)             
-                          if ispalindrome(num1) and ispalindrome(num2) and ispalindromenum3):             
-                              return (num1, num2, num3)      
-                  ```
+                 
+>                  for num1 in range(n):         
+>                      for num2 in range(n):            
+>                          num3 = n - (num1 + num2)             
+>                          if ispalindrome(num1) and ispalindrome(num2) and ispalindrome(num3):             
+>                              return (num1, num2, num3)      
+                  
                   
 2) three_palindrom.py: It is the algorithmic implementation of _**'research_paper_3_palindrome.pdf'**_. The algorithm first classifies the given sum into cases.
                         If number given is from 2 to 6 digits, we have specific algorithms and for bigger numbers we follow a general algorithm by further breaking it
@@ -51,5 +51,3 @@ In the web version, You have to fill the input box and submit. The program will 
 5) Additionals:
       - test.py: it imports the naive and research algorithm code and runs for n=1 to 1000 and plots the time taken by both codes. After seeing the comparision images, it is                         obvious that our algorithm is much more efficient than the brute force approach.
       - research paper.pdf : It is the research paper based on which the whole code is written
-
-requirements: For test.py, You would want to install matplotlib but as it plots the graph for runtime vs n. But there are no requirements to run algorithm
