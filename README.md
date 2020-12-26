@@ -1,5 +1,15 @@
 # sum_of_palindromes
 
+## Working of Algorithm:
+We first identify the number of digits.     
+If it is between 2 to 5 or 6 digits with most significant digit = 1. Then we use special algorithms which are implemented in functions 
+*sum_#_digits* where # is the number of digits.    
+For bigger numbers we create a general algorithm which first divides the number into 13 categories(A1-A7, B1-B6) and initializes the first and last digits of each palindrome.   
+We also check if number has odd no of digits and whether either of the central digits is 0 or not.
+Depending on these conditions and category of number, we process the number through one(or more) of the 5 main algorithms. Each algorithm involves initializing the palindromes' first and last digits after which we iteratively find the numbers in the center.      
+After each algorithm's raw run, There is a correction code that looks for anomalies in the three palindromes and make changes in numbers to keep the sum equal to number while making sure that all numbers are palindromes. This is known as the **Adjustment step**. After adjustment, the three palindromes are returned in the form of a tuple.
+
+
 ## How to run
 **To run the console app**    
 > Clone the repository or download zip.    
@@ -18,17 +28,18 @@
 > Go to browser and search `localhost:5000` or `127.0.0.1:5000`    
 
 ## Web version:
-After creating the console version, I created a flask based website to give a more GUI based look to the website.
-In the web version, You have to fill the input box and submit. The program will make a post request and receive the three palindromes if the input given was correct.
+After creating the console version, I created a flask based website to give a more GUI based look.
+In the web version, You have to fill the input box and submit. The program will make a post request and receive the three palindromes if the input given was correct, Otherwise it will give the prompt with error in input.
 
 
+<hr />
 
 ### Structure and Contents: 
 1) naive_sum.py: Contains the brute force approach to calculate three palindromes such that their sum is equal to number given by user.
                   Program uses 3 nested loops to iterate over all triplets of numbers from (0,0,0) to (n,n,n) and stop when it finds the triplet such that all numbers are     
                   palindromes and sum is n. The time complexity is O(n^3) which is not very efficient. You can see the time taken by program to find triplets in comparision.png.
                   Orange line represents the time taken to find triplet for given n. It increases to great extend after n=1000.
-                  We Can increase the efficiency by exploiting the fact that sum is constant by following code.        
+                  We Can increase the efficiency by exploiting the fact that sum is constant with following code.        
                  
 >                  for num1 in range(n):         
 >                      for num2 in range(n):            
@@ -37,14 +48,11 @@ In the web version, You have to fill the input box and submit. The program will 
 >                              return (num1, num2, num3)      
                   
                   
-2) three_palindrom.py: It is the algorithmic implementation of _**'research_paper_3_palindrome.pdf'**_. The algorithm first classifies the given sum into cases.
-                        If number given is from 2 to 6 digits, we have specific algorithms and for bigger numbers we follow a general algorithm by further breaking it
-                        into different cases. Numbers are broken into 13 categories (A1-A7, B1-B6) and depending on category, One(or more) of the five algorithms are used on it.
-                        We first identify the corner digits and iterate towards the center digits to get the complete number. The actual calculations can be read in research paper
-                        or the program.     
+2) three_palindrom.py:  It is the algorithmic implementation of _**'research_paper_3_palindrome.pdf'**_. When run, the code will prompt you to enter a number in decimal system.
+                        If  the input is not of correct format, It will prompt the error and for input until a positive integer is entered. If user enters a positive float, it                           will take it's floor. The conversion may involve processing number through special algorithms(for 2-6 digit numbers) or a general algorithm(for 7 or more                         digits). Each time the number goes through general algorithm, program outputs the current value of number and the algorithm it is currently going                                 through. The final output is displayed in a box like format with 3 palindromes, their sum and a verdict whether the sum of palindromes is actually equal                         to initial number or not.
                         The time complexity of program is O(k) where k is the number of digits.
 
-3) Static: Static folder contains the cascading style sheets and the javascript code for the web version of program. I have used SCSS and JQuery in place of vanilla JS and CSS.
+3) Static: Static folder contains the styling and the scripts for the web version of program. I have used SCSS and JQuery.
 
 4) templates: It contains the html code for the web version.
 
