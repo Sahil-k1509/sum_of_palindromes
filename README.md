@@ -11,22 +11,22 @@ After each algorithm's raw run, There is a correction code that looks for anomal
 
 
 ### Images:
-![image](additonals/images/desc)
+![image](additonals/images/desc.png)
 
 **Command Line version:**    
-![image](additonals/images/cmd_version)
+![image](additonals/images/cmd_version.png)
 
 **Web version:**    
-![image](additonals/images/web_version)
+![image](additonals/images/web_version.png)
 
 **Comparision of naive approach and algorithm:**    
-![image](additonals/images/comparision)
+![image](additonals/images/comparision.png)
 
 **Time for small values of n(100-200):**    
-![image](additonals/images/compare_short)
+![image](additonals/images/compare_short.png)
 
 **Time for large values of n(1000-1100):**    
-![image](additonals/images/compare_large)
+![image](additonals/images/compare_large.png)
 
 
 **For even larger values of n. The naive approach will take much much longer.**
