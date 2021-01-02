@@ -10,6 +10,34 @@ Depending on these conditions and category of number, we process the number thro
 After each algorithm's raw run, There is a correction code that looks for anomalies in the three palindromes and make changes in numbers to keep the sum equal to number while making sure that all numbers are palindromes. This is known as the **Adjustment step**. After adjustment, the three palindromes are returned in the form of a tuple.
 
 
+### Images:
+![image](additonals/images/desc)
+
+**Command Line version:**    
+![image](additonals/images/cmd_version)
+
+**Web version:**    
+![image](additonals/images/web_version)
+
+**Comparision of naive approach and algorithm:**    
+![image](additonals/images/comparision)
+
+**Time for small values of n(100-200):**    
+![image](additonals/images/compare_short)
+
+**Time for large values of n(1000-1100):**    
+![image](additonals/images/compare_large)
+
+
+**For even larger values of n. The naive approach will take much much longer.**
+
+> **Note:** There are sudden falls in time taken by Naive approach.    
+> This happens when the number is very close to a palindrome.     
+> Say we give 1011. So, we can break the number as    
+> 1001 + 9 + 1    
+> The other two palindromes are very small, this means the for loop will not run for a lot of values(We will encounter the break early) and hence the runtime is less.     
+> But this happens for only some special cases and in general, the naive approach is still worse than our algorithm.
+
 ## How to run
 **To run the console app**    
 > Clone the repository or download zip.    
