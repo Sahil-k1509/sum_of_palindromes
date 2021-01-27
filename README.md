@@ -7,10 +7,10 @@ If it is between 2 to 5 or 6 digits with most significant digit = 1. Then we use
 For bigger numbers we create a general algorithm which first divides the number into 13 categories(A1-A7, B1-B6) and initializes the first and last digits of each palindrome.   
 We also check if number has odd no of digits and whether either of the central digits is 0 or not.
 Depending on these conditions and category of number, we process the number through one(or more) of the 5 main algorithms. Each algorithm involves initializing the palindromes' first and last digits after which we iteratively find the numbers in the center.      
-After each algorithm's raw run, There is a correction code that looks for anomalies in the three palindromes and make changes in numbers to keep the sum equal to number while making sure that all numbers are palindromes. This is known as the **Adjustment step**. After adjustment, the three palindromes are returned in the form of a tuple.
+After each algorithm's raw run, There is a correction code that looks for anomalies in the three palindromes and make changes in numbers to keep the sum equal to number while making sure that all numbers are palindromes. This is known as the **Adjustment step**. After adjustment, the three palindromes are returned in the form of a tuple.        
 
 
-### Images:
+
 ![image](additionals/images/desc.png)
 
 **Command Line version:**    
@@ -19,17 +19,23 @@ After each algorithm's raw run, There is a correction code that looks for anomal
 **Web version:**    
 ![image](additionals/images/web_version.png)
 
-**Comparision of naive approach and algorithm:**    
-![image](additionals/images/comparision.png)
+<br><br>
 
-**Time for small values of n(100-200):**    
-![image](additionals/images/compare_short.png)
+**Comparision of n^3 brute force and our algo:**    
+![image](additionals/images/comparision_n3.png)
 
-**Time for large values of n(1000-1100):**    
+**Comparision of n^2 optmized brute force and our algo):**    
+![image](additionals/images/comparision_n2.png)
+
+**Zoomed view for large values of n with n^3:**    
 ![image](additionals/images/compare_large.png)
 
+**Zoomed view for large values of n with n^2:**    
+![image](additionals/images/comp_large.png)
 
-**For even larger values of n. The naive approach will take much much longer.**
+The n^3 algorithm takes a LOT of time to calculate palindromes even for n between 1000-1100.    
+The optimized n^2 algorithm is significantly better but still fails for even larger values of n (10000+).     
+The research algorithm on the other hand more or less gives the result in constant time (Less than few milliseconds).    
 
 > **Note:** There are sudden falls in time taken by Naive approach.    
 > This happens when the number is very close to a palindrome.     
