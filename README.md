@@ -22,16 +22,16 @@ After each algorithm's raw run, There is a correction code that looks for anomal
 <br><br>
 
 **Comparision of n^3 brute force and our algo:**    
-![image](additionals/images/comparision_n3.png)
+![image](additionals/comparision_n3.png)
 
 **Comparision of n^2 optmized brute force and our algo):**    
-![image](additionals/images/comparision_n2.png)
+![image](additionals/comparision_n2.png)
 
 **Zoomed view for large values of n with n^3:**    
 ![image](additionals/images/compare_large.png)
 
 **Zoomed view for large values of n with n^2:**    
-![image](additionals/images/comp_large.png)
+![image](additionals/comp_large.png)
 
 The n^3 algorithm takes a LOT of time to calculate palindromes even for n between 1000-1100.    
 The optimized n^2 algorithm is significantly better but still fails for even larger values of n (10000+).     
