@@ -1,6 +1,8 @@
 from flask import Flask, render_template, request, url_for
-from three_palindrome import find_palindromes
+from algorithms.three_palindrome import find_palindromes
+import os
 
+port = int(os.environ.get('PORT', 5000))
 
 app = Flask(__name__)
 
@@ -28,4 +30,5 @@ def index():
 
 
 if __name__ == "__main__":
-    app.run(debug=False)
+    # app.run(host='0.0.0.0', port=port, debug=True)
+    app.run(debug=True)
