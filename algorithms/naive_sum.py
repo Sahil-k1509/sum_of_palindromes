@@ -43,7 +43,32 @@ def naive_palindromes(n, print_pal=True):
                     print_palindromes(pal1, pal2, pal3, time_elapsed)
                 
                 return (pal1, pal2, pal3, time_elapsed*1000)
-                
+
+
+def naive_palindromes_n3(n, print_pal=True):
+    
+    def print_palindromes(p1, p2, p3, time_elapsed):
+        print("-------------------------------------------")
+        print("First Palindrome: \t" ,   p1,  sep='')
+        print("Second Palindrome:\t" ,   p2,  sep='')
+        print("Third Palindrome: \t" ,   p3,  sep='')
+        print("-------------------------------------------")
+        print(f"Total Time Elapsed:  {time_elapsed*1000:.5f} ms")
+
+    start_time = perf_counter()
+    for i in range(n+1):
+        for j in range(n+1):
+            for k in range(n+1):
+                if is_palindrome(i) and is_palindrome(j) and is_palindrome(k) and i+j+k==n:
+                    end_time = perf_counter()
+                    time_elapsed =  end_time - start_time
+                    pal1, pal2, pal3 = i, j, k
+                    
+                    if print_pal:
+                        print_palindromes(pal1, pal2, pal3, time_elapsed)
+                    
+                    return (pal1, pal2, pal3, time_elapsed*1000)
+                    
 
 def main():
     
