@@ -24,22 +24,22 @@ Dated: 12 August 2020
 # INDEX:
 
 # 1)    imports:                  line 49
-# 2)    Helper functions:         line 56   -   112
-# 3)    sum_two_digits:           line 117  -   132
-# 4)    sum_three_digits:         line 138  -   169
-# 5)    sum_four_digits:          line 173  -   246
-# 6)    sum_five_digits:          line 252  -   333
-# 7)    sum_six_digits:           line 339  -   740
-# 8)    Decide_type:              line 753  -   848
-# 9)    Algorithm_1:              line 856  -   937
-# 10)   Algorithm_2:              line 943  -   1041
-# 11)   Algorithm_3:              line 1047 -   1142
-# 12)   Algorithm_4:              line 1148 -   1432
-# 13)   Algorithm_5:              line 1438 -   1498
-# 14)   Main_algorithm:           line 1505 -   1576
-# 15)   find_palindrome:          line 1583 -   1697
-# 16)   main:                     line 1702 -   1735
-# 17)   calling main function:    line 1740 
+# 2)    Helper functions:         line 56   
+# 3)    sum_two_digits:           line 134  
+# 4)    sum_three_digits:         line 160  
+# 5)    sum_four_digits:          line 195  
+# 6)    sum_five_digits:          line 281  
+# 7)    sum_six_digits:           line 365  
+# 8)    Decide_type:              line 776  
+# 9)    Algorithm_1:              line 879  
+# 11)   Algorithm_3:              line 1070
+# 10)   Algorithm_2:              line 966 
+# 12)   Algorithm_4:              line 1167
+# 13)   Algorithm_5:              line 1454
+# 14)   Main_algorithm:           line 1521
+# 15)   find_palindrome:          line 1599
+# 16)   main:                     line 1718
+# 17)   calling main function:    line 1755
 
 
 # Main Code Starts
@@ -765,9 +765,6 @@ def sum_six_digits(d, p1, p2, p3, g=10):
                 
                 return (p1, p2, p3)
             
-                
-
-
 # ------------------------------------------------------------------------------------------------ #
 
 
@@ -1749,7 +1746,6 @@ def main():
     # We can store and perform calculations on it if we don't
     # want to print it in standard inbuilt way.
     find_palindromes(n, g, print_pal=True)
-    
     
     return
     
